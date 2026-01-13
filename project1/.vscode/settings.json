@@ -14,5 +14,7 @@
     "--background-index",
     "--query-driver=**",
     "--compile-commands-dir=c:\\Users\\joeyc\\Documents\\ECE218\\Project-1\\project1\\build"
-  ]
+  ],
+  "idf.portWin": "COM4",
+  "idf.flashType": "UART"
 }
