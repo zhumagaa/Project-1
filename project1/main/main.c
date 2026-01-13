@@ -2,10 +2,15 @@
 #include "driver/gpio.h"
 
 
+//Would be preferable for these to be active high
+
 #define dseat GPIO_NUM_10  //Driver seat button pin
 #define dbelt GPIO_NUM_11  //Driver seatbelt button pin
 #define pseat GPIO_NUM_12  //Passenger seat button pin
 #define pbelt GPIO_NUM_13  //Passenger seat button pin
+#define transmission GPIO_NUM_14
+#define gLED GPIO_NUM_15   //Green LED pin
+#define rLED GPIO_NUM_16   // Red LED pin
 
 
 void print_status() {                               //Define a function for printing reason for car not starting
@@ -26,6 +31,8 @@ void print_status() {                               //Define a function for prin
     }
 }
 
+
+//Configured for active high
 bool ready() {                                      //Define a function to check if all conditions are fufilled
     return gpio_get_level(dseat) 
     && gpio_get_level(dbelt) 
@@ -59,11 +66,34 @@ void app_main(void) {
     gpio_set_direction(pbelt, GPIO_MODE_OUTPUT);
     gpio_pullup_en(pbelt);
     gpio_pulldown_en(pbelt);
-    gpio_intr_disable(pbelt);
+
+    //Configure transmission pin
+    gpio_reset_pin(transmission);
+    gpio_set_direction(transmission, GPIO_MODE_INPUT);
+    gpio_pullup_en(transmission);
+    gpio_pulldown_en(transmission);
+
+    //Configure gLED pin
+    gpio_reset_pin(gLED);
+    gpio_set_direction(gLED, GPIO_MODE_INPUT);
+
+    //Configure rLED pin
+    gpio_reset_pin(rLED);
+    gpio_set_direction(rLED, GPIO_MODE_INPUT);
 
     while(1) {                                      //Start the actual process
         if (gpio_get_level(dseat) == 0) {
-            printf("Welcome to enhanced alarm system model 218-W25.");
+            printf("Welcome to enhanced alarm system model 218-W25. \n");
+            while(1) {
+                if (ready() == 1) {
+                    gpio_set_level(gLED, 1);
+                    if (gpio_get_level(transmission) == 1) {
+                        gpio_set_level(rLED, 1);
+                        gpio_set_level(gLED, 0);
+                    }
+                }
+            }
         }
+        vTaskDelay(20/portTICK_PERIOD_MS);
     }
 }
