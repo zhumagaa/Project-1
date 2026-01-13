@@ -21,9 +21,16 @@ void print_status() {                               //Define a function for prin
         printf("Passenger Not Seated \n");          //Print if passenger not seated
     }
 
-    if (gpio_get_level(dbelt)){                     //Check if passenger is buckled
+    if (gpio_get_level(pbelt)){                     //Check if passenger is buckled
         printf("Passenger Not Buckled \n");         //Print if passenger not buckled
     }
+}
+
+bool ready() {                                      //Define a function to check if all conditions are fufilled
+    return gpio_get_level(dseat) 
+    && gpio_get_level(dbelt) 
+    && gpio_get_level(pseat) 
+    && gpio_get_level(pbelt);
 }
 
 
@@ -53,8 +60,10 @@ void app_main(void) {
     gpio_pullup_en(pbelt);
     gpio_pulldown_en(pbelt);
     gpio_intr_disable(pbelt);
-    
-    
-    print_status();
 
+    while(1) {                                      //Start the actual process
+        if (gpio_get_level(dseat) == 0) {
+            printf("Welcome to enhanced alarm system model 218-W25.");
+        }
+    }
 }
