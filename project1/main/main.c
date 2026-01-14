@@ -78,8 +78,8 @@ void app_main(void) {
     gpio_set_direction(rLED, GPIO_MODE_OUTPUT);
 
     //Configure alarm pin
-    gpio_reset_pin(rLED);
-    gpio_set_direction(rLED, GPIO_MODE_OUTPUT);
+    gpio_reset_pin(alarm);
+    gpio_set_direction(alarm, GPIO_MODE_OUTPUT);
 
     while(1) {                                      //Start the actual process
         if (gpio_get_level(dseat) == 1) {
