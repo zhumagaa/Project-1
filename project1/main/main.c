@@ -47,40 +47,35 @@ void app_main(void) {
     //Configure dseat pin
     gpio_reset_pin(dseat);
     gpio_set_direction(dseat, GPIO_MODE_INPUT);
-    gpio_pullup_en(dseat);
     gpio_pulldown_en(dseat);
 
     //Configure dbelt pin
     gpio_reset_pin(dbelt);
     gpio_set_direction(dbelt, GPIO_MODE_INPUT);
-    gpio_pullup_en(dbelt);
     gpio_pulldown_en(dbelt);
 
     //Configure pseat pin
     gpio_reset_pin(pseat);
     gpio_set_direction(pseat, GPIO_MODE_INPUT);
-    gpio_pullup_en(pseat);
     gpio_pulldown_en(pseat);
 
     //Configure pbelt pin
     gpio_reset_pin(pbelt);
-    gpio_set_direction(pbelt, GPIO_MODE_OUTPUT);
-    gpio_pullup_en(pbelt);
+    gpio_set_direction(pbelt, GPIO_MODE_INPUT);
     gpio_pulldown_en(pbelt);
 
     //Configure transmission pin
     gpio_reset_pin(transmission);
     gpio_set_direction(transmission, GPIO_MODE_INPUT);
-    gpio_pullup_en(transmission);
     gpio_pulldown_en(transmission);
 
     //Configure gLED pin
     gpio_reset_pin(gLED);
-    gpio_set_direction(gLED, GPIO_MODE_INPUT);
+    gpio_set_direction(gLED, GPIO_MODE_OUTPUT);
 
     //Configure rLED pin
     gpio_reset_pin(rLED);
-    gpio_set_direction(rLED, GPIO_MODE_INPUT);
+    gpio_set_direction(rLED, GPIO_MODE_OUTPUT);
 
     while(1) {                                      //Start the actual process
         if (gpio_get_level(dseat) == 0) {
