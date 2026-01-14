@@ -77,6 +77,10 @@ void app_main(void) {
     gpio_reset_pin(rLED);
     gpio_set_direction(rLED, GPIO_MODE_OUTPUT);
 
+    //Configure alarm pin
+    gpio_reset_pin(rLED);
+    gpio_set_direction(rLED, GPIO_MODE_OUTPUT);
+
     while(1) {                                      //Start the actual process
         if (gpio_get_level(dseat) == 1) {
             printf("Welcome to enhanced alarm system model 218-W25. \n");
