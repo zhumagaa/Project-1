@@ -4,14 +4,14 @@
 
 //Would be preferable for these to be active high
 
-#define dseat GPIO_NUM_10                           //Driver seat button pin
-#define dbelt GPIO_NUM_11                           //Driver seatbelt button pin
-#define pseat GPIO_NUM_12                           //Passenger seat button pin
-#define pbelt GPIO_NUM_13                           //Passenger seat button pin
-#define transmission GPIO_NUM_14                    //Passenger seat button pin
-#define gLED GPIO_NUM_15                            //Green LED pin
-#define rLED GPIO_NUM_16                            //Red LED pin
-#define alarm GPIO_NUM_17                           //Alarm pin
+#define dseat GPIO_NUM_4                            //Driver seat button pin
+#define dbelt GPIO_NUM_6                            //Driver seatbelt button pin
+#define pseat GPIO_NUM_5                            //Passenger seat button pin
+#define pbelt GPIO_NUM_7                            //Passenger seat button pin
+#define transmission GPIO_NUM_10                    //Passenger seat button pin
+#define gLED GPIO_NUM_13                            //Green LED pin
+#define rLED GPIO_NUM_14                            //Red LED pin
+#define alarm GPIO_NUM_12                           //Alarm pin
 
 
 void print_status() {                               //Define a function for printing reason for car not starting
