@@ -15,19 +15,19 @@
 
 
 void print_status() {                               //Define a function for printing reason for car not starting
-    if (gpio_get_level(dseat)){                     //Check if driver is seated
+    if (gpio_get_level(dseat) == 0){                //Check if driver is seated
         printf("Driver Not Seated \n");             //Print if driver not seated
     }
 
-    if (gpio_get_level(dbelt)){                     //Check if driver is buckled
+    if (gpio_get_level(dbelt) == 0){                //Check if driver is buckled
         printf("Driver Not Buckled \n");            //Print if driver not buckled
     }
 
-    if (gpio_get_level(pseat)){                     //Check if passenger is seated
+    if (gpio_get_level(pseat) == 0){                //Check if passenger is seated
         printf("Passenger Not Seated \n");          //Print if passenger not seated
     }
 
-    if (gpio_get_level(pbelt)){                     //Check if passenger is buckled
+    if (gpio_get_level(pbelt) == 0){                //Check if passenger is buckled
         printf("Passenger Not Buckled \n");         //Print if passenger not buckled
     }
 }
@@ -78,7 +78,7 @@ void app_main(void) {
     gpio_set_direction(rLED, GPIO_MODE_OUTPUT);
 
     while(1) {                                      //Start the actual process
-        if (gpio_get_level(dseat) == 0) {
+        if (gpio_get_level(dseat) == 1) {
             printf("Welcome to enhanced alarm system model 218-W25. \n");
             while(1) {
                 while (ready() == 1) {
@@ -87,6 +87,9 @@ void app_main(void) {
                         gpio_set_level(rLED, 1);
                         gpio_set_level(gLED, 0);
                         printf("Engine Started \n");
+                        while(1) {
+                            vTaskDelay(20/portTICK_PERIOD_MS);
+                        }
                     }
                     vTaskDelay(20/portTICK_PERIOD_MS);
                 }
@@ -95,6 +98,9 @@ void app_main(void) {
                     print_status();
                     vTaskDelay(500/portTICK_PERIOD_MS);
                     gpio_set_level(alarm, 0);
+                    while(1) {
+                        vTaskDelay(20/portTICK_PERIOD_MS);
+                    }
                 }
                 vTaskDelay(20/portTICK_PERIOD_MS);
             }
