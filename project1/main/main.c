@@ -97,6 +97,7 @@ void app_main(void) {
                     }
                     vTaskDelay(20/portTICK_PERIOD_MS);
                 }
+                gpio_set_level(gLED, 0);
                 if (gpio_get_level(transmission) == 1) {
                     gpio_set_level(alarm, 1);
                     print_status();
