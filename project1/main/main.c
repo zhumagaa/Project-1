@@ -81,6 +81,8 @@ void app_main(void) {
     gpio_reset_pin(alarm);
     gpio_set_direction(alarm, GPIO_MODE_OUTPUT);
 
+    printf("\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n");
+
     while(1) {                                      //Start the actual process
         if (gpio_get_level(dseat) == 1) {
             printf("Welcome to enhanced alarm system model 218-W25. \n");
@@ -107,6 +109,15 @@ void app_main(void) {
                         vTaskDelay(20/portTICK_PERIOD_MS);
                     }
                 }
+                vTaskDelay(20/portTICK_PERIOD_MS);
+            }
+        }
+        if (gpio_get_level(transmission) == 1) {
+            gpio_set_level(alarm, 1);
+            print_status();
+            vTaskDelay(500/portTICK_PERIOD_MS);
+            gpio_set_level(alarm, 0);
+            while(1) {
                 vTaskDelay(20/portTICK_PERIOD_MS);
             }
         }
