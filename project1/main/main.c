@@ -81,8 +81,6 @@ void app_main(void) {
     gpio_reset_pin(alarm);
     gpio_set_direction(alarm, GPIO_MODE_OUTPUT);
 
-    printf("\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n");
-
     while(1) {                                      //Start the actual process
         if (gpio_get_level(dseat) == 1) {
             printf("Welcome to enhanced alarm system model 218-W25. \n");
