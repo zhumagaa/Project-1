@@ -2,8 +2,6 @@
 #include "driver/gpio.h"
 
 
-//Would be preferable for these to be active high
-
 #define dseat GPIO_NUM_4                            //Driver seat button pin
 #define dbelt GPIO_NUM_6                            //Driver seatbelt button pin
 #define pseat GPIO_NUM_5                            //Passenger seat button pin
