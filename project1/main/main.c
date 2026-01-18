@@ -12,6 +12,15 @@
 #define alarm GPIO_NUM_12                           //Alarm pin
 
 
+//Configured for active high
+bool ready() {                                      //Define a function to check if all conditions are fufilled
+    return gpio_get_level(dseat) 
+    && gpio_get_level(dbelt) 
+    && gpio_get_level(pseat) 
+    && gpio_get_level(pbelt);
+}
+
+
 void print_status() {                               //Define a function for printing reason for car not starting
     if (gpio_get_level(dseat) == 0){                //Check if driver is seated
         printf("Driver Not Seated \n");             //Print if driver not seated
@@ -28,15 +37,6 @@ void print_status() {                               //Define a function for prin
     if (gpio_get_level(pbelt) == 0){                //Check if passenger is buckled
         printf("Passenger Not Buckled \n");         //Print if passenger not buckled
     }
-}
-
-
-//Configured for active high
-bool ready() {                                      //Define a function to check if all conditions are fufilled
-    return gpio_get_level(dseat) 
-    && gpio_get_level(dbelt) 
-    && gpio_get_level(pseat) 
-    && gpio_get_level(pbelt);
 }
 
 
